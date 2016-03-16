@@ -14,9 +14,8 @@ class ZondokoKiyoshiPlugin implements Plugin<Project> {
         } else if (project.plugins.hasPlugin('com.android.library')) {
             applyAndroid(project, (DomainObjectCollection<BaseVariant>) project.android.libraryVariants);
         } else {
-            throw new IllegalArgumentException('ZondokoKiyoshi plugin requires the Android plugin to be configured');
+            project.tasks.create('zungokokiyoshi', ZungokokiyoshiTask)
         }
-//        project.tasks.create('zungokokiyoshi', ZungokokiyoshiTask)
     }
 
     private static void applyAndroid(Project project, DomainObjectCollection<BaseVariant> variants) {
