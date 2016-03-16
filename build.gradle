@@ -1,0 +1,53 @@
+plugins {
+    id 'groovy'
+    id 'com.jfrog.bintray' version '1.6'
+}
+
+apply from: file('gradle/maven.gradle')//}
+
+sourceCompatibility = JavaVersion.VERSION_1_7
+targetCompatibility = JavaVersion.VERSION_1_7
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    compile 'com.android.tools.build:gradle:1.5.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+task install(dependsOn: 'publishMavenPublicationToMavenLocal')
+
+ext.siteUrl = 'https://github.com/operando/gradle-zundokokiyoshi-plugin'
+
+group = 'com.os.operando.zundokokiyoshi'
+description = 'gradle zundokokiyoshi plugin.'
+version = '0.9.3'
+ext.license = 'Apache-2.0'
+ext.licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+ext.gradlePluginId = 'com.os.operando.gradle.zundokokiyoshi'
+ext.gitUrl = 'https://github.com/operando/gradle-zundokokiyoshi-plugin.git'
+
+bintray {
+    user = rootProject.hasProperty('bintrayUser') ? rootProject.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = rootProject.hasProperty('bintrayApiKey') ? rootProject.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    publications = ['maven']
+    publish = true
+    pkg {
+        repo = 'maven'
+        name = rootProject.name
+        websiteUrl = siteUrl
+        vcsUrl = gitUrl
+        desc = rootProject.description
+        issueTrackerUrl = 'https://github.com/operando/gradle-zundokokiyoshi-plugin/issues'
+        licenses = ['Apache-2.0']
+        labels = ['gradle']
+        publicDownloadNumbers = true
+        version {
+            attributes = ['gradle-plugin': "${rootProject.gradlePluginId}:${rootProject.group}:${rootProject.name}"]
+            name = rootProject.version
+        }
+    }
+}
