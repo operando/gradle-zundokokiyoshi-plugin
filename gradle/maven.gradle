@@ -1,0 +1,52 @@
+apply plugin: 'maven-publish'
+
+task javadocJar(type: Jar, dependsOn: groovydoc) {
+    from "${buildDir}/docs/groovydoc"
+    classifier = 'javadoc'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact javadocJar
+            groupId rootProject.group
+            artifactId rootProject.name
+            pom.withXml {
+                asNode().children().last() + {
+                    resolveStrategy = DELEGATE_FIRST
+                    name rootProject.name
+                    description rootProject.description
+                    url rootProject.siteUrl
+                    inceptionYear '2016'
+                    packaging 'jar'
+                    scm {
+                        url rootProject.gitUrl
+                        connection "scm:git:$rootProject.gitUrl"
+                    }
+                    licenses {
+                        license {
+                            name rootProject.license
+                            url rootProject.licenseUrl
+                            distribution 'repo'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id 'operando'
+                            name 'Shinobu Okano'
+                            email 'okanoshinobu8@gmail.com'
+                            url 'https://github.com/operando'
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
