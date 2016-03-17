@@ -1,0 +1,12 @@
+apply plugin: 'com.os.operando.gradle.zundokokiyoshi'
+
+buildscript {
+    repositories {
+        jcenter()
+        // local
+//        mavenLocal()
+    }
+    dependencies {
+        classpath 'com.os.operando.zundokokiyoshi:gradle-zundokokiyoshi-plugin:0.9.4'
+    }
+}
