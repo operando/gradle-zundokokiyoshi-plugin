@@ -1,9 +1,41 @@
 # gradle-zundokokiyoshi-plugin
 
 
-## Zundoko Kiyoshi
+## Usage
+
+You can add it to your build script using the following configuration:
+
+```gralde
+apply plugin: 'com.os.operando.gradle.zundokokiyoshi'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.os.operando.zundokokiyoshi:gradle-zundokokiyoshi-plugin:0.9.4'
+    }
+}
+```
+
+## Tasks
+
+### `zundokokiyoshi`
+
+```bash
+$ gradle zungokokiyoshi
+:zungokokiyoshi
+ズン ズン ドコ ズン ズン ズン ドコ ズン ズン ズン ズン ズン ドコ キ・ヨ・シ！
+
+BUILD SUCCESSFUL
+
+Total time: 3.814 secs
 
 ```
+
+### Android assemble task dependencies zundokokiyoshi
+
+```bash
 $ gradle assembleDebug
 :app:preBuild UP-TO-DATE
 :app:preDebugBuild UP-TO-DATE
