@@ -24,7 +24,7 @@ ext.siteUrl = 'https://github.com/operando/gradle-zundokokiyoshi-plugin'
 
 group = 'com.os.operando.zundokokiyoshi'
 description = 'gradle zundokokiyoshi plugin.'
-version = '0.9.3'
+version = '0.9.4'
 ext.license = 'Apache-2.0'
 ext.licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
 ext.gradlePluginId = 'com.os.operando.gradle.zundokokiyoshi'
