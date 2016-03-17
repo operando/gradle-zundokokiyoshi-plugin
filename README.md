@@ -5,7 +5,7 @@
 
 You can add it to your build script using the following configuration:
 
-```gralde
+```gradle
 apply plugin: 'com.os.operando.gradle.zundokokiyoshi'
 
 buildscript {
